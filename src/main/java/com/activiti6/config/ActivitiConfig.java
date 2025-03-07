@@ -1,7 +1,5 @@
 package com.activiti6.config;
 
-import javax.sql.DataSource;
-
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.impl.history.HistoryLevel;
 import org.activiti.spring.SpringProcessEngineConfiguration;
@@ -10,17 +8,24 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.sql.DataSource;
+
 /**
  * activiti 配置类
- * liuzhize 2019年3月7日下午3:26:56
+ * author: Rainbow-CC
  */
 @Configuration
 public class ActivitiConfig {
 
     @Autowired
     private DataSource dataSource;
+
     @Autowired
     private PlatformTransactionManager transactionManager;
+
+    @Autowired
+    private CustomerGroupManager customerGroupManager;
+
 
     /**
      * 初始化配置
@@ -42,7 +47,12 @@ public class ActivitiConfig {
         configuration.setAnnotationFontName("宋体");
         configuration.setLabelFontName("宋体");
         configuration.setTransactionManager(transactionManager);
-        return configuration;
 
+        // 用户权限体系自定义
+        configuration.setGroupDataManager(customerGroupManager);
+
+        return configuration;
     }
+
+
 }

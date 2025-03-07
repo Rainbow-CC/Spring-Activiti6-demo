@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 /**
  * 加载静态资源类
- * liuzhize 2019年3月7日下午3:25:49
  */
 @Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
